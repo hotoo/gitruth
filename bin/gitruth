@@ -19,7 +19,6 @@ EOF
 }
 
 display_n_version(){
-  #cat ../package.json | grep "version" | awk -F'"' '{print $$4}'
   echo $VERSION
 }
 
