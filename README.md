@@ -6,6 +6,12 @@
 Clean git files forever. Like
 [Ministry of Truth](http://en.wikipedia.org/wiki/Ministry_of_Truth)
 
+## Install
+
+```bash
+$ npm install gitruth -g
+```
+
 ## Usage
 
 ```bash
