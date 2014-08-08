@@ -15,8 +15,8 @@ $ npm install gitruth -g
 ## Usage
 
 ```bash
-$ gitclean path/to/file
-$ gitclean -h
+$ gitruth path/to/file
+$ gitruth -h
 ```
 
 ## Thanks
