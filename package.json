@@ -1,0 +1,13 @@
+{
+  "name": "gitruth",
+  "version": "0.1.0",
+  "description": "Clean Git Files Forever.",
+  "bin": {
+    "gitclean": "./bin/gitruth"
+  },
+  "keywords": [
+    "Git"
+  ],
+  "author": "闲耘 <hotoo.cn@gmail.com>",
+  "license": "MIT"
+}

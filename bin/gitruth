@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+VERSION="0.1.0"
+
+display_help(){
+
+  cat <<-EOF
+
+  Usage: gitclean [options] path/to/file
+
+
+  Options:
+
+    -V, --version   Output current version of n
+    -h, --help      Display help information
+
+EOF
+  exit 0
+}
+
+display_n_version(){
+  #cat ../package.json | grep "version" | awk -F'"' '{print $$4}'
+  echo $VERSION
+}
+
+gitclean(){
+
+  local clean_file_path=$1
+
+  if [ ! -f $clean_file_path ]; then
+    echo "No Found file $clean_file_path"
+    exit 0
+  fi
+
+  # backup.
+  cp $clean_file_path $clean_file_path.tmp
+
+  eval "git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $clean_file_path' --prune-empty --tag-name-filter cat -- --all"
+
+  # GC
+  rm -rf .git/refs/original/
+  git reflog expire --expire=now --all
+  git gc --prune=now
+  git gc --aggressive --prune=now
+
+  # restore
+  mv $clean_file_path.tmp $clean_file_path
+}
+
+if test $# -eq 0; then
+  display_help
+else
+  while test $# -ne 0; do
+    case $1 in
+      -V|--version) display_n_version ;;
+      -h|--help|help) display_help ;;
+      *) gitclean $1; exit ;;
+    esac
+    shift
+  done
+fi
+
+# vim:ft=sh
