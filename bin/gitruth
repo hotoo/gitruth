@@ -11,7 +11,7 @@ display_help(){
 
   Options:
 
-    -V, --version   Output current version of n
+    -V, --version   Output current version of gitruth
     -h, --help      Display help information
 
 EOF
